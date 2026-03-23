@@ -1,0 +1,18 @@
+package com.example.taskmanagement.repository;
+
+import com.example.taskmanagement.entity.Task;
+import com.example.taskmanagement.entity.TaskPriority;
+import com.example.taskmanagement.entity.TaskStatus;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface TaskRepository extends JpaRepository<Task, Long> {
+    List<Task> findByUserId(Long userId);
+    List<Task> findByStatus(TaskStatus status);
+    List<Task> findByPriority(TaskPriority priority);
+    List<Task> findByUserIdAndStatus(Long userId, TaskStatus status);
+    List<Task> findByUserIdAndPriority(Long userId, TaskPriority priority);
+    List<Task> findByStatusAndPriority(TaskStatus status, TaskPriority priority);
+    List<Task> findByUserIdAndStatusAndPriority(Long userId, TaskStatus status, TaskPriority priority);
+}
